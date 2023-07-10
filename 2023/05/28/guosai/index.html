@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>FCTF | dudududu~</title>
+  <title>guosai | dudududu~</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="校赛的题目都好难啊！！">
+  <meta name="description" content="Sign_in_passwd将第二行的代码进行url decode后当做密钥，对第一行进行base64解码  签到 基于国密SM2算法的密钥 在 https:&#x2F;&#x2F;const.net.cn&#x2F;tool&#x2F;sm2&#x2F;genkey&#x2F; 上面，可以随便生成一个公钥。 根据附件所给的提示，虽然不知道为什么，可能题目纯在bug，当把api都访问过后直接就能给出答案。 dumpit题目一进来就告诉了use ?db&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FCTF">
-<meta property="og:url" content="http://example.com/2023/05/13/FCTF/index.html">
+<meta property="og:title" content="guosai">
+<meta property="og:url" content="http://example.com/2023/05/28/guosai/index.html">
 <meta property="og:site_name" content="dudududu~">
-<meta property="og:description" content="校赛的题目都好难啊！！">
+<meta property="og:description" content="Sign_in_passwd将第二行的代码进行url decode后当做密钥，对第一行进行base64解码  签到 基于国密SM2算法的密钥 在 https:&#x2F;&#x2F;const.net.cn&#x2F;tool&#x2F;sm2&#x2F;genkey&#x2F; 上面，可以随便生成一个公钥。 根据附件所给的提示，虽然不知道为什么，可能题目纯在bug，当把api都访问过后直接就能给出答案。 dumpit题目一进来就告诉了use ?db&amp;#x">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/05/13/FCTF/image-20230513201200445.png">
-<meta property="article:published_time" content="2023-05-13T11:51:06.000Z">
-<meta property="article:modified_time" content="2023-05-27T00:13:08.078Z">
+<meta property="og:image" content="http://example.com/2023/05/28/guosai/image-20230528171616786.png">
+<meta property="og:image" content="http://example.com/2023/05/28/guosai/M59%5BDV0J8FQ$SD_8JJYIQ$T.png">
+<meta property="article:published_time" content="2023-05-28T09:11:48.000Z">
+<meta property="article:modified_time" content="2023-05-28T09:43:55.216Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/05/13/FCTF/image-20230513201200445.png">
+<meta name="twitter:image" content="http://example.com/2023/05/28/guosai/image-20230528171616786.png">
   
     <link rel="alternative" href="/atom.xml" title="dudududu~" type="application/atom+xml">
   
@@ -151,40 +152,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-FCTF" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-guosai" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      FCTF
+      guosai
     </h1>
   
 
         
-        <a href="/2023/05/13/FCTF/" class="archive-article-date">
-  	<time datetime="2023-05-13T11:51:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
+        <a href="/2023/05/28/guosai/" class="archive-article-date">
+  	<time datetime="2023-05-28T09:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>校赛的题目都好难啊！！<span id="more"></span></p>
-<h2 id="OhMySubstitution"><a href="#OhMySubstitution" class="headerlink" title="OhMySubstitution"></a>OhMySubstitution</h2><p>上来给了三个文件，依次打开后虽然看不懂是怎么转换的，但是发现已经给了task.py和task.py.sub，并且也给了转换之后的flag。</p>
-<p>并且比对转换之后的头部恰好对应着“flag”，发现了这个之后，就进行了漫长的对比过程。。。最后一个个对比LEXx{AabPEFwmhSLZICtK4V7PEF53XdEF1xv}在task.py和task.py.sub中的相对位置，最后得到flag为：flag{SImpleFLAGf0rth3siMpleCHa1lengE}。</p>
-<h2 id="OhMyBabyRSA"><a href="#OhMyBabyRSA" class="headerlink" title="OhMyBabyRSA"></a>OhMyBabyRSA</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Util.number import *</span><br><span class="line">from gmpy2 import *</span><br><span class="line">from flag import flag</span><br><span class="line"></span><br><span class="line">assert len(flag) == 64</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">e = 0x10001</span><br><span class="line">p = getPrime(512)</span><br><span class="line">q = next_prime(p)</span><br><span class="line">r = next_prime(p ** 2)</span><br><span class="line">s = next_prime(p ** 2 + 2 * p)</span><br><span class="line">n = p * q * r * s</span><br><span class="line">enc_flag = pow(m, e, n)</span><br><span class="line">print(&#x27;enc_flag = &#123;&#125;&#x27;.format(enc_flag))</span><br><span class="line">print(&#x27;n = &#123;&#125;&#x27;.format(n))</span><br><span class="line"># enc_flag = 558836963892291103066012094226404872594845364724579579991939237075579471649022307274993648128182517068287908608655415311755710090008211573414344029835353781291323908206471422281147726239928360761865479544172749805334616301957959278310473294247847521324572903221325229335022712401334502115695904656113962454250581526487895617076665754872131186428648736058458412272765528707432325958141098175330803091489468724702305686936229775407901818600060946741408743919586767495259761367467476503780543279625798302542584588978511276728664944144579409952017206450866041923826806704052807019813067433837160952899733154934186413925841253118812554800888389368694102120865165465433259165138659414714776140989544202661327846864680898295330274677583542546296074123273743756046577717820668548175691681620322220047893114528135863551048011715129345653970540952003136382932332819185050051737497246260600134821357970479905685544379854114544905948675</span><br><span class="line"># n = 4585220815776999590055268112030603818021191370301120880780222364392250014983314932723298191358652879592967574345478779616485618832169592564777281575229501545712411843629202396154469247865107402975392888995304852104947403496017764676587445201431113495491552183361767761315150187982631812381238087947034846562736655789319024873832925979674088032852318237995824554295270982389181363828453148263620332874085992344607610869015297326907819850433565724104404950554547589126111382147046243321683721375936214001147848535405650428880055597764068065280248888037305689827899917209188622887273812501048396659996613733703663885928471971978569071784449540183594649965515643612482274284037115014264632840294739610331402567051615488750578731580283981608846801850905256596712916241406828340016173069989416184703050234519900628400339072501951161184622923080534399066722460909462250943918523149342428697097029180299994056867709033999356912758167</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="Sign-in-passwd"><a href="#Sign-in-passwd" class="headerlink" title="Sign_in_passwd"></a>Sign_in_passwd</h1><p>将第二行的代码进行url decode后当做密钥，对第一行进行base64解码</p>
+<p><img src="/2023/05/28/guosai/image-20230528171616786.png" alt="image-20230528171616786"></p>
+<h1 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h1><p><img src="/2023/05/28/guosai/M59%5BDV0J8FQ$SD_8JJYIQ$T.png" alt="img"></p>
+<h1 id="基于国密SM2算法的密钥"><a href="#基于国密SM2算法的密钥" class="headerlink" title="基于国密SM2算法的密钥"></a>基于国密SM2算法的密钥</h1><p> 在 <a target="_blank" rel="noopener" href="https://const.net.cn/tool/sm2/genkey/">https://const.net.cn/tool/sm2/genkey/</a> 上面，可以随便生成一个公钥。</p>
+<p>根据附件所给的提示，虽然不知道为什么，可能题目纯在bug，当把api都访问过后直接就能给出答案。</p>
+<h1 id="dumpit"><a href="#dumpit" class="headerlink" title="dumpit"></a>dumpit</h1><p>题目一进来就告诉了use ?db&#x3D;&amp;table_2_query&#x3D; or ?db&#x3D;&amp;table_2_dump&#x3D;  根据题目的模样排除第一个，应该使用第二种。题目提示了flag in &#x2F;flag 但是应该是被过滤掉了一些字符。后面找到可以用%0a绕过。最后构造payload为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db=ctf&amp;table_2_dump=flag1%20%20%0aenv%0a</span><br></pre></td></tr></table></figure>
 
-<p>由题目可知，n由四个素数构成，本来以为可以暴力破解，但是不知道为什么在yafu上分解不了，其他在线网站也无济于事。所以只好找其他办法，从题目发现，p，q非常接近，r，s非常接近p^2和（p+1)^2,所以想到了直接将n开6次方。得到了一个与p很接近的实数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from sympy import nextprime</span><br><span class="line"></span><br><span class="line">n = 4585220815776999590055268112030603818021191370301120880780222364392250014983314932723298191358652879592967574345478779616485618832169592564777281575229501545712411843629202396154469247865107402975392888995304852104947403496017764676587445201431113495491552183361767761315150187982631812381238087947034846562736655789319024873832925979674088032852318237995824554295270982389181363828453148263620332874085992344607610869015297326907819850433565724104404950554547589126111382147046243321683721375936214001147848535405650428880055597764068065280248888037305689827899917209188622887273812501048396659996613733703663885928471971978569071784449540183594649965515643612482274284037115014264632840294739610331402567051615488750578731580283981608846801850905256596712916241406828340016173069989416184703050234519900628400339072501951161184622923080534399066722460909462250943918523149342428697097029180299994056867709033999356912758167</span><br><span class="line"></span><br><span class="line">near_p1 = int(n**(1/6))</span><br><span class="line">p = nextprime(near_p1)</span><br><span class="line">q = nextprime(p)</span><br><span class="line">r = nextprime(p**2)</span><br><span class="line">s = nextprime(p**2 + 2 * p)</span><br><span class="line"></span><br><span class="line">print(&#x27;p=&#x27;,p)</span><br><span class="line">print(&#x27;q=&#x27;,q)</span><br><span class="line">print(&#x27;r=&#x27;,r)</span><br><span class="line">print(&#x27;s=&#x27;,s)</span><br></pre></td></tr></table></figure>
-
-<p>在sagemath中跑完发现得到的值并不相等，因为n^(1&#x2F;6)&gt;p,所以得到是一个比p大的一个素数，但是又非常接近，所以就减小near_p1，发现当near_p1-3时，p,q,r,s的值发生改变，并且经过验证之后发现n&#x3D;&#x3D;p* q * r * s</p>
-<p><img src="/2023/05/13/FCTF/image-20230513201200445.png" alt="image-20230513201200445"></p>
-<p>最后将得到的值拿到python中解决就能拿到flag了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import gmpy2</span><br><span class="line">from Crypto.Util.number import *</span><br><span class="line">import math</span><br><span class="line"></span><br><span class="line">e = 65537</span><br><span class="line">c = 558836963892291103066012094226404872594845364724579579991939237075579471649022307274993648128182517068287908608655415311755710090008211573414344029835353781291323908206471422281147726239928360761865479544172749805334616301957959278310473294247847521324572903221325229335022712401334502115695904656113962454250581526487895617076665754872131186428648736058458412272765528707432325958141098175330803091489468724702305686936229775407901818600060946741408743919586767495259761367467476503780543279625798302542584588978511276728664944144579409952017206450866041923826806704052807019813067433837160952899733154934186413925841253118812554800888389368694102120865165465433259165138659414714776140989544202661327846864680898295330274677583542546296074123273743756046577717820668548175691681620322220047893114528135863551048011715129345653970540952003136382932332819185050051737497246260600134821357970479905685544379854114544905948675</span><br><span class="line">n = 4585220815776999590055268112030603818021191370301120880780222364392250014983314932723298191358652879592967574345478779616485618832169592564777281575229501545712411843629202396154469247865107402975392888995304852104947403496017764676587445201431113495491552183361767761315150187982631812381238087947034846562736655789319024873832925979674088032852318237995824554295270982389181363828453148263620332874085992344607610869015297326907819850433565724104404950554547589126111382147046243321683721375936214001147848535405650428880055597764068065280248888037305689827899917209188622887273812501048396659996613733703663885928471971978569071784449540183594649965515643612482274284037115014264632840294739610331402567051615488750578731580283981608846801850905256596712916241406828340016173069989416184703050234519900628400339072501951161184622923080534399066722460909462250943918523149342428697097029180299994056867709033999356912758167</span><br><span class="line">p= 12889222157689481670246473135005825250630401991073722080055662757971514279409143880875414854378230689212076117760050469978076846937944856563667923585241491</span><br><span class="line">q= 12889222157689481670246473135005825250630401991073722080055662757971514279409143880875414854378230689212076117760050469978076846937944856563667923585241501</span><br><span class="line">r= 166132047830273497491447803339250536606519563835673905705150928156122916145824954729515830070099322846248800665090035695746709638696855950019640580027151550765537519056301227563988435125025526734768241420829952154653584047587790039630279710081142538235144138748803163102172486912968081338232713293988787904569</span><br><span class="line">s= 166132047830273497491447803339250536606519563835673905705150928156122916145824954729515830070099322846248800665090035695746709638696855950019640580027151576543981834435264568056934705136676027995572223568274112265979099990616348857918041460910851294696522562901038683203112443066661957227945840629835958386073</span><br><span class="line">d = gmpy2.invert(e, (p-1)*(q-1)*(r-1)*(s-1))</span><br><span class="line">m = pow(c, d, p * q*r*s)</span><br><span class="line">print(d)</span><br><span class="line">print(m)</span><br><span class="line">print(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
-
-<p>flag为：FCTF{it_easy_pqrst_RSA_also_baby_with_Monotonically_increasing!}</p>
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p>上传一个带有符号链接的zip，使得解压出来的文件夹指向网站目录；再上传一个zip，让文件解压到刚刚上传的文件夹中就可以达到上传至网站目录的效果。</p>
 
       
 
@@ -264,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/05/13/FCTF/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/05/28/guosai/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +274,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/05/28/guosai/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          guosai
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/06/buuctf/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">buuctf做题笔记</div>
+    <a href="/2023/05/13/FCTF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FCTF</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -316,7 +303,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OhMySubstitution"><span class="toc-number">1.</span> <span class="toc-text">OhMySubstitution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OhMyBabyRSA"><span class="toc-number">2.</span> <span class="toc-text">OhMyBabyRSA</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Sign-in-passwd"><span class="toc-number">1.</span> <span class="toc-text">Sign_in_passwd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0"><span class="toc-number">2.</span> <span class="toc-text">签到</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%9B%BD%E5%AF%86SM2%E7%AE%97%E6%B3%95%E7%9A%84%E5%AF%86%E9%92%A5"><span class="toc-number">3.</span> <span class="toc-text">基于国密SM2算法的密钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dumpit"><span class="toc-number">4.</span> <span class="toc-text">dumpit</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#unzip"><span class="toc-number">5.</span> <span class="toc-text">unzip</span></a></li></ol>
                     </div>
                 </span>
             </div>

@@ -147,6 +147,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-guosai" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/28/guosai/">guosai</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/28/guosai/" class="archive-article-date">
+  	<time datetime="2023-05-28T09:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Sign-in-passwd"><a href="#Sign-in-passwd" class="headerlink" title="Sign_in_passwd"></a>Sign_in_passwd</h1><p>将第二行的代码进行url decode后当做密钥，对第一行进行base64解码</p>
+<p><img src="/2023/05/28/guosai/image-20230528171616786.png" alt="image-20230528171616786"></p>
+<h1 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h1><p><img src="/2023/05/28/guosai/M59%5BDV0J8FQ$SD_8JJYIQ$T.png" alt="img"></p>
+<h1 id="基于国密SM2算法的密钥"><a href="#基于国密SM2算法的密钥" class="headerlink" title="基于国密SM2算法的密钥"></a>基于国密SM2算法的密钥</h1><p> 在 <a target="_blank" rel="noopener" href="https://const.net.cn/tool/sm2/genkey/">https://const.net.cn/tool/sm2/genkey/</a> 上面，可以随便生成一个公钥。</p>
+<p>根据附件所给的提示，虽然不知道为什么，可能题目纯在bug，当把api都访问过后直接就能给出答案。</p>
+<h1 id="dumpit"><a href="#dumpit" class="headerlink" title="dumpit"></a>dumpit</h1><p>题目一进来就告诉了use ?db&#x3D;&amp;table_2_query&#x3D; or ?db&#x3D;&amp;table_2_dump&#x3D;  根据题目的模样排除第一个，应该使用第二种。题目提示了flag in &#x2F;flag 但是应该是被过滤掉了一些字符。后面找到可以用%0a绕过。最后构造payload为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db=ctf&amp;table_2_dump=flag1%20%20%0aenv%0a</span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p>上传一个带有符号链接的zip，使得解压出来的文件夹指向网站目录；再上传一个zip，让文件解压到刚刚上传的文件夹中就可以达到上传至网站目录的效果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/28/guosai/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-FCTF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
