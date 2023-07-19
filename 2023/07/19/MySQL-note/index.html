@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>dudududu~</title>
+  <title>MySQL_note | dudududu~</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="dudududu~">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="记录MySQL的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL_note">
+<meta property="og:url" content="http://example.com/2023/07/19/MySQL-note/index.html">
 <meta property="og:site_name" content="dudududu~">
+<meta property="og:description" content="记录MySQL的学习笔记">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T14:57:54.000Z">
+<meta property="article:modified_time" content="2023-07-19T14:59:15.806Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -145,16 +149,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-MySQL-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-MySQL-note" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/MySQL-note/">MySQL_note</a>
+    <h1 class="article-title" itemprop="name">
+      MySQL_note
     </h1>
   
 
@@ -167,10 +169,491 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录MySQL的学习笔记
-        
+        <p>记录MySQL的学习笔记<span id="more"></span></p>
+<h1 id="7-9"><a href="#7-9" class="headerlink" title="7.9"></a>7.9</h1><h2 id="DB，DBMS，SQL"><a href="#DB，DBMS，SQL" class="headerlink" title="DB，DBMS，SQL"></a>DB，DBMS，SQL</h2><p>数据库，数据库管理系统，以及SQL之间的关系：数据库即database（DB），数据库管理系统（DBMS）包括MySQl，</p>
+<p>，Oracle，DB2等，数据库管理系统可以对数据库进行增删查改等操作处理数据库数据，SQL：结构化查询语言。</p>
+<p><strong>数据库管理系统通过执行SQL语句来操作数据库。</strong></p>
+<h2 id="SQL语句的分类"><a href="#SQL语句的分类" class="headerlink" title="SQL语句的分类"></a>SQL语句的分类</h2><p>SQL语句可分为：<br>            DQL：<br>                数据查询语言（凡是带有select关键字的都是查询语句）<br>                select…</p>
+<p>​		DML：<br>​			数据操作语言（凡是对表当中的数据进行增删改的都是DML）<br>​			insert delete update<br>​			insert 增<br>​			delete 删<br>​			update 改</p>
+<p>​			这个主要是操作表中的数据data。</p>
+<p>​		DDL：<br>​			数据定义语言<br>​			凡是带有create、drop、alter的都是DDL。<br>​			DDL主要操作的是表的结构。不是表中的数据。<br>​			create：新建，等同于增<br>​			drop：删除<br>​			alter：修改<br>​			这个增删改和DML不同，这个主要是对表结构进行操作。</p>
+<p>​		TCL：<br>​			不是王牌电视。<br>​			是事务控制语言<br>​			包括：<br>​				事务提交：commit;<br>​				事务回滚：rollback;</p>
+<p>​		DCL：<br>​			是数据控制语言。<br>​			例如：授权grant、撤销权限revoke….</p>
+<h2 id="DQl的一些语法"><a href="#DQl的一些语法" class="headerlink" title="DQl的一些语法"></a>DQl的一些语法</h2><p>1.null很特殊，因为null表示什么也没有，所以在比较时不能用 xxx&#x3D;bull而因该用xxx is null 或者 xxx is not null</p>
+<p>2.单行处理函数：lower（） 转换小写</p>
+<p>upper（）转换大写</p>
+<p>substr（xxx，a，b） 截取子串，xxx为被提取的字符串，a为骑士位置，并且第一个字符的位置为1，b为截取的长度</p>
+<p>concat（xxx，yyy）拼接xxx和yyy两个字符串</p>
+<p>length（）取长度</p>
+<p>trim（） 去空格</p>
+<p>str_to_date（） 将字符串转换成日期<br>    date_format（） 格式化日期<br>    format（） 设置千分位</p>
+<p>round（）四舍五入</p>
+<p>rand（）随机数</p>
+<p>ifnull(数据, 被当做哪个值)  如果“数据”为NULL的时候，把这个数据结构当做哪个值。</p>
+<p>3.分组函数（多行处理函数）</p>
+<p>count（）计数 sum（）求和 avg（）求平均值 max（）求最大值 min（）求最小值</p>
+<p>分组函数即为多个输入一个输出。</p>
+<p>DQL的基本结构为：	                                        </p>
+<p>select<br>        …<br>    from<br>        …<br>    where<br>        …<br>    group by<br>        …<br>    having<br>        …<br>    order by</p>
+<p>执行顺序：</p>
+<p>1.from </p>
+<p>2.where</p>
+<p>3.group by</p>
+<p>4.having</p>
+<p>5.select</p>
+<p>6.order by</p>
+<p><strong>DQL语法注意事项：</strong></p>
+<p>在where里不能直接使用分组函数，因为分组函数在使用的时候必须先分组之后才能使用。根据DQL的执行顺序，在执行where时，还未进行分组，所以无法使用分组函数，而在select里可以直接使用是因为，就算没有写group by数据库也会被默认分为一组，所以在select里可以直接使用分组函数。</p>
+<h1 id="7-10"><a href="#7-10" class="headerlink" title="7.10"></a>7.10</h1><h2 id="内，外连接"><a href="#内，外连接" class="headerlink" title="内，外连接"></a>内，外连接</h2><p>DQL查询在涉及到多张表的查询时有多种查询方式，其中包括内连接，外连接等。</p>
+<p>查询的语法为：</p>
+<p>select<br>            …<br>        from<br>            a<br>        join &#x2F;&#x2F;表示连接<br>            b<br>        on<br>            a和b的连接条件<br>        where<br>            筛选条件</p>
+<p>内外连接中还包括一种自连接：自连接的技巧在于将一张表看做两张表，依靠取别名来区分，</p>
+<p>select<br>    a.ename as ‘员工名’, b.ename as ‘领导名’<br>from<br>    emp a<br>join<br>    emp b<br>on<br>    a.mgr &#x3D; b.empno; </p>
+<p>外连接具有right 和left两个关键字，在right右边的表或在left左边的表即为主表，主表中的所有数据都表示出来。</p>
+<h2 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h2><p>三张表，四张表怎么连接的方式：<br>    语法：<br>        select<br>            …<br>        from<br>            a<br>        join<br>            b<br>        on<br>            a和b的连接条件<br>        join<br>            c<br>        on<br>            a和c的连接条件<br>        right join<br>            d<br>        on<br>            a和d的连接条件</p>
+<p>其相当于a与b，c分别内连接，与d右连接。</p>
+<h1 id="7-11"><a href="#7-11" class="headerlink" title="7.11"></a>7.11</h1><h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>什么是子查询？<br>    select语句中嵌套select语句，被嵌套的select语句称为子查询。</p>
+<p>where子句中的子查询</p>
+<pre><code>案例：找出比最低工资高的员工姓名和工资？
+    select 
+        ename,sal
+    from
+        emp 
+    where
+        sal &gt; min(sal);
+
+    ERROR 1111 (HY000): Invalid use of group function
+    where子句中不能直接使用分组函数。
+
+实现思路：
+    第一步：查询最低工资是多少
+        select min(sal) from emp;
+        +----------+
+        | min(sal) |
+        +----------+
+        |   800.00 |
+        +----------+
+    第二步：找出&gt;800的
+        select ename,sal from emp where sal &gt; 800;
+    
+    第三步：合并
+        select ename,sal from emp where sal &gt; (select min(sal) from emp);
+</code></pre>
+<p>from子句中的子查询<br>    注意：from后面的子查询，可以将子查询的查询结果当做一张临时表。（技巧）</p>
+<pre><code>案例：找出每个岗位的平均工资的薪资等级。
+
+第一步：找出每个岗位的平均工资（按照岗位分组求平均值）
+    select job,avg(sal) from emp group by job;
+    +-----------+-------------+
+    | job       | avgsal      |
+    +-----------+-------------+
+    | ANALYST   | 3000.000000 |
+    | CLERK     | 1037.500000 |
+    | MANAGER   | 2758.333333 |
+    | PRESIDENT | 5000.000000 |
+    | SALESMAN  | 1400.000000 |
+    +-----------+-------------+t表
+
+第二步：把以上的查询结果就当做一张真实存在的表t。
+mysql&gt; select * from salgrade; s表
++-------+-------+-------+
+| GRADE | LOSAL | HISAL |
++-------+-------+-------+
+|     1 |   700 |  1200 |
+|     2 |  1201 |  1400 |
+|     3 |  1401 |  2000 |
+|     4 |  2001 |  3000 |
+|     5 |  3001 |  9999 |
++-------+-------+-------+
+t表和s表进行表连接，条件：t表avg(sal) between s.losal and s.hisal;
+    
+    select 
+        t.*, s.grade
+    from
+        (select job,avg(sal) as avgsal from emp group by job) t
+    join
+        salgrade s
+    on
+        t.avgsal between s.losal and s.hisal;
+    
+    +-----------+-------------+-------+
+    | job       | avgsal      | grade |
+    +-----------+-------------+-------+
+    | CLERK     | 1037.500000 |     1 |
+    | SALESMAN  | 1400.000000 |     2 |
+    | ANALYST   | 3000.000000 |     4 |
+    | MANAGER   | 2758.333333 |     4 |
+    | PRESIDENT | 5000.000000 |     5 |
+    +-----------+-------------+-------+
+</code></pre>
+<h2 id="union合并查询结果集"><a href="#union合并查询结果集" class="headerlink" title="union合并查询结果集"></a>union合并查询结果集</h2><p>查询工作岗位是MANAGER和SALESMAN的员工？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">select ename,job from emp where job = &#x27;MANAGER&#x27; or job = &#x27;SALESMAN&#x27;;</span><br><span class="line">	select ename,job from emp where job in(&#x27;MANAGER&#x27;,&#x27;SALESMAN&#x27;);</span><br><span class="line">	+--------+----------+</span><br><span class="line">	| ename  | job      |</span><br><span class="line">	+--------+----------+</span><br><span class="line">	| ALLEN  | SALESMAN |</span><br><span class="line">	| WARD   | SALESMAN |</span><br><span class="line">	| JONES  | MANAGER  |</span><br><span class="line">	| MARTIN | SALESMAN |</span><br><span class="line">	| BLAKE  | MANAGER  |</span><br><span class="line">	| CLARK  | MANAGER  |</span><br><span class="line">	| TURNER | SALESMAN |</span><br><span class="line">	+--------+----------+</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">select ename,job from emp where job = &#x27;MANAGER&#x27;</span><br><span class="line">union</span><br><span class="line">select ename,job from emp where job = &#x27;SALESMAN&#x27;;</span><br><span class="line"></span><br><span class="line">+--------+----------+</span><br><span class="line">| ename  | job      |</span><br><span class="line">+--------+----------+</span><br><span class="line">| JONES  | MANAGER  |</span><br><span class="line">| BLAKE  | MANAGER  |</span><br><span class="line">| CLARK  | MANAGER  |</span><br><span class="line">| ALLEN  | SALESMAN |</span><br><span class="line">| WARD   | SALESMAN |</span><br><span class="line">| MARTIN | SALESMAN |</span><br><span class="line">| TURNER | SALESMAN |</span><br><span class="line">+--------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>union能够提高效率，union的效率要高一些。对于表连接来说，每连接一次新表，<br>    则匹配的次数满足笛卡尔积，成倍的翻。。。<br>    但是union可以减少匹配的次数。在减少匹配次数的情况下，<br>    还可以完成两个结果集的拼接。</p>
+<p>a 连接 b 连接 c<br>a 10条记录<br>b 10条记录<br>c 10条记录<br>匹配次数是：1000</p>
+<p>a 连接 b一个结果：10 * 10 –&gt; 100次<br>a 连接 c一个结果：10 * 10 –&gt; 100次<br>使用union的话是：100次 + 100次 &#x3D; 200次。（union把乘法变成了加法运算）</p>
+<p>union在进行结果集合并的时候，要求两个结果集的列数相同。</p>
+<h2 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h2><p>完整用法：limit startIndex, length<br>        startIndex是起始下标，length是长度。<br>        起始下标从0开始。</p>
+<pre><code>缺省用法：limit 5; 这是取前5.
+
+按照薪资降序，取出排名在前5名的员工？
+select 
+    ename,sal
+from
+    emp
+order by 
+    sal desc
+limit 5; //取前5
+
+select 
+    ename,sal
+from
+    emp
+order by 
+    sal desc
+limit 0,5;
+</code></pre>
+<p>因为每一个数据的起始位置为0，这个要与substr进行区分，所以当用limit来进行分页时，就有一个公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">limit (pageNo-1)*pageSize , pageSize</span><br></pre></td></tr></table></figure>
+
+<p>结合所有，对DQL语句进行的一个大总结：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select </span><br><span class="line">		...</span><br><span class="line">	from</span><br><span class="line">		...</span><br><span class="line">	where</span><br><span class="line">		...</span><br><span class="line">	group by</span><br><span class="line">		...</span><br><span class="line">	having</span><br><span class="line">		...</span><br><span class="line">	order by</span><br><span class="line">		...</span><br><span class="line">	limit</span><br><span class="line">		...</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">执行顺序？</span><br><span class="line">	1.from</span><br><span class="line">	2.where</span><br><span class="line">	3.group by</span><br><span class="line">	4.having</span><br><span class="line">	5.select</span><br><span class="line">	6.order by</span><br><span class="line">	7.limit..</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-12"><a href="#7-12" class="headerlink" title="7.12"></a>7.12</h1><h2 id="表的创建"><a href="#表的创建" class="headerlink" title="表的创建"></a>表的创建</h2><p>建表的语法格式：(建表属于DDL语句，DDL包括：create drop alter)</p>
+<pre><code>create table 表名(字段名1 数据类型, 字段名2 数据类型, 字段名3 数据类型);
+
+create table 表名(
+    字段名1 数据类型, 
+    字段名2 数据类型, 
+    字段名3 数据类型
+);
+
+表名：建议以t_ 或者 tbl_开始，可读性强。见名知意。
+字段名：见名知意。
+表名和字段名都属于标识符。
+</code></pre>
+<p>关于mysql中的数据类型？</p>
+<pre><code>    varchar(最长255)
+        可变长度的字符串
+        比较智能，节省空间。
+        会根据实际的数据长度动态分配空间。
+
+        优点：节省空间
+        缺点：需要动态分配空间，速度慢。
+
+    char(最长255)
+        定长字符串
+        不管实际的数据长度是多少。
+        分配固定长度的空间去存储数据。
+        使用不恰当的时候，可能会导致空间的浪费。
+
+        优点：不需要动态分配空间，速度快。
+        缺点：使用不当可能会导致空间的浪费。
+
+        varchar和char我们应该怎么选择？
+            性别字段你选什么？因为性别是固定长度的字符串，所以选择char。
+            姓名字段你选什么？每一个人的名字长度不同，所以选择varchar。
+
+    int(最长11)
+        数字中的整数型。等同于java的int。
+
+    bigint
+        数字中的长整型。等同于java中的long。
+
+    float	
+        单精度浮点型数据
+
+    double
+        双精度浮点型数据
+
+    date
+        短日期类型
+
+    datetime
+        长日期类型
+
+    clob
+        字符大对象
+        最多可以存储4G的字符串。
+        比如：存储一篇文章，存储一个说明。
+        超过255个字符的都要采用CLOB字符大对象来存储。
+        Character Large OBject:CLOB
+
+
+    blob
+        二进制大对象
+        Binary Large OBject
+        专门用来存储图片、声音、视频等流媒体数据。
+        往BLOB类型的字段上插入数据的时候，例如插入一个图片、视频等，
+        你需要使用IO流才行。
+</code></pre>
+<h3 id="插入数据insert-（DML）"><a href="#插入数据insert-（DML）" class="headerlink" title="插入数据insert （DML）"></a>插入数据insert （DML）</h3><p>​	</p>
+<pre><code>语法格式：
+    insert into 表名(字段名1,字段名2,字段名3...) values(值1,值2,值3);
+
+    注意：字段名和值要一一对应。什么是一一对应？
+        数量要对应。数据类型要对应。
+
+insert into t_student(no,name,sex,age,email) values(1,&#39;zhangsan&#39;,&#39;m&#39;,20,&#39;zhangsan@123.com&#39;);
+insert into t_student(email,name,sex,age,no) values(&#39;lisi@123.com&#39;,&#39;lisi&#39;,&#39;f&#39;,20,2);
+
+insert into t_student(no) values(3);
+
++------+----------+------+------+------------------+
+| no   | name     | sex  | age  | email            |
++------+----------+------+------+------------------+
+|    1 | zhangsan | m    |   20 | zhangsan@123.com |
+|    2 | lisi     | f    |   20 | lisi@123.com     |
+|    3 | NULL     | NULL | NULL | NULL             |
++------+----------+------+------+------------------+
+insert into t_student(name) values(&#39;wangwu&#39;);
++------+----------+------+------+------------------+
+| no   | name     | sex  | age  | email            |
++------+----------+------+------+------------------+
+|    1 | zhangsan | m    |   20 | zhangsan@123.com |
+|    2 | lisi     | f    |   20 | lisi@123.com     |
+|    3 | NULL     | NULL | NULL | NULL             |
+| NULL | wangwu   | NULL | NULL | NULL             |
++------+----------+------+------+------------------+
+注意：insert语句但凡是执行成功了，那么必然会多一条记录。
+没有给其它字段指定值的话，默认值是NULL。
+
+drop table if exists t_student;
+create table t_student(
+    no int,
+    name varchar(32),
+    sex char(1) default &#39;m&#39;,
+    age int(3),
+    email varchar(255)
+);
+
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| no    | int(11)      | YES  |     | NULL    |       |
+| name  | varchar(32)  | YES  |     | NULL    |       |
+| sex   | char(1)      | YES  |     | m       |       |
+| age   | int(3)       | YES  |     | NULL    |       |
+| email | varchar(255) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+insert into t_student(no) values(1);
+mysql&gt; select * from t_student;
++------+------+------+------+-------+
+| no   | name | sex  | age  | email |
++------+------+------+------+-------+
+|    1 | NULL | m    | NULL | NULL  |
++------+------+------+------+-------+
+
+insert语句中的“字段名”可以省略吗？可以
+    insert into t_student values(2); //错误的
+
+    // 注意：前面的字段名省略的话，等于都写上了！所以值也要都写上！
+    insert into t_student values(2, &#39;lisi&#39;, &#39;f&#39;, 20, &#39;lisi@123.com&#39;);
+    +------+------+------+------+--------------+
+    | no   | name | sex  | age  | email        |
+    +------+------+------+------+--------------+
+    |    1 | NULL | m    | NULL | NULL         |
+    |    2 | lisi | f    |   20 | lisi@123.com |
+    +------+------+------+------+--------------+
+insert语句可以一次插入多条记录
+    语法：insert into t_user(字段名1,字段名2) values(),(),(),();
+    一次可以插入多条记录：
+        insert into t_user(id,name,birth,create_time) values
+        (1,&#39;zs&#39;,&#39;1980-10-11&#39;,now()), 
+        (2,&#39;lisi&#39;,&#39;1981-10-11&#39;,now()),
+        (3,&#39;wangwu&#39;,&#39;1982-10-11&#39;,now());
+</code></pre>
+<h3 id="修改update（DML）"><a href="#修改update（DML）" class="headerlink" title="修改update（DML）"></a>修改update（DML）</h3><p>语法格式：<br>    update 表名 set 字段名1&#x3D;值1,字段名2&#x3D;值2,字段名3&#x3D;值3… where 条件;</p>
+<pre><code>注意：没有条件限制会导致所有数据全部更新。
+
+update t_user set name = &#39;jack&#39;, birth = &#39;2000-10-11&#39; where id = 2;
++------+----------+------------+---------------------+
+| id   | name     | birth      | create_time         |
++------+----------+------------+---------------------+
+|    1 | zhangsan | 1990-10-01 | 2020-03-18 15:49:50 |
+|    2 | jack     | 2000-10-11 | 2020-03-18 15:51:23 |
++------+----------+------------+---------------------+
+
+update t_user set name = &#39;jack&#39;, birth = &#39;2000-10-11&#39;, create_time = now() where id = 2;
+
+更新所有？
+    update t_user set name = &#39;abc&#39;;
+</code></pre>
+<h3 id="删除数据-delete-（DML）"><a href="#删除数据-delete-（DML）" class="headerlink" title="删除数据 delete （DML）"></a>删除数据 delete （DML）</h3><p>​	语法格式？<br>​		delete from 表名 where 条件;</p>
+<pre><code>注意：没有条件，整张表的数据会全部删除！
+
+delete from t_user where id = 2;
+
+insert into t_user(id) values(2);
+
+delete from t_user; // 删除所有！
+</code></pre>
+<p>delete语句删除数据的原理？（delete属于DML语句！！！）<br>        表中的数据被删除了，但是这个数据在硬盘上的真实存储空间不会被释放！！！<br>        这种删除缺点是：删除效率比较低。<br>        这种删除优点是：支持回滚，后悔了可以再恢复数据！！！</p>
+<p>truncate语句删除数据的原理？<br>    这种删除效率比较高，表被一次截断，物理删除。<br>    这种删除缺点：不支持回滚。<br>    这种删除优点：快速。</p>
+<p>用法：truncate table dept_bak; （这种操作属于DDL操作。）</p>
+<p>drop table 表名; &#x2F;&#x2F; 这不是删除表中的数据，这是把表删除。</p>
+<h1 id="7-13"><a href="#7-13" class="headerlink" title="7.13"></a>7.13</h1><p>对表结构的修改需要使用：alter<br>    属于DDL语句</p>
+<pre><code>DDL包括：create drop alter
+</code></pre>
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>​	约束对应的英语单词：constraint<br>​	在创建表的时候，我们可以给表中的字段加上一些约束，来保证这个表中数据的<br>​	完整性、有效性！！！</p>
+<p>约束的作用就是为了保证：表中的数据有效！！</p>
+<p>约束包括哪些？<br>    非空约束：not null<br>    唯一性约束: unique<br>    主键约束: primary key （简称PK）<br>    外键约束：foreign key（简称FK）<br>    检查约束：check（mysql不支持，oracle支持）</p>
+<h3 id="not-null"><a href="#not-null" class="headerlink" title="not null"></a>not null</h3><p>非空约束not null约束的字段不能为NULL。</p>
+<p>create table t_vip(<br>        id int,<br>        name varchar(255) not null  &#x2F;&#x2F; not null只有列级约束，没有表级约束！<br>    );</p>
+<h3 id="unique"><a href="#unique" class="headerlink" title="unique"></a>unique</h3><p>唯一性约束unique约束的字段不能重复，但是可以为NULL。<br>    create table t_vip(<br>        id int,<br>        name varchar(255) unique,<br>        email varchar(255)<br>    );</p>
+<p>name和email两个字段联合起来具有唯一性！！！！</p>
+<p>create table t_vip(<br>                id int,<br>                name varchar(255),<br>                email varchar(255),<br>                unique(name,email) &#x2F;&#x2F; 约束没有添加在列的后面，这种约束被称为表级约束。<br>            );</p>
+<p>在mysql当中，如果一个字段同时被not null和unique约束的话，该字段自动变成主键字段。</p>
+<h3 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h3><p>主键约束（primary key，简称PK）</p>
+<p>主键约束的相关术语？<br>        主键约束：就是一种约束。<br>        主键字段：该字段上添加了主键约束，这样的字段叫做：主键字段<br>        主键值：主键字段中的每一个值都叫做：主键值。</p>
+<p>什么是主键？有啥用？<br>    主键值是每一行记录的唯一标识。<br>    主键值是每一行记录的身份证号！！！</p>
+<p>记住：任何一张表都应该有主键，没有主键，表无效，并且一张表只有一个主键！！</p>
+<p>主键的特征：not null + unique（主键值不能是NULL，同时也不能重复！）</p>
+<p>创建主键约束：</p>
+<p>create table t_vip(<br>            id int primary key,  &#x2F;&#x2F;列级约束<br>            name varchar(255)<br>        );</p>
+<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><p>外键约束（foreign key，简称FK）</p>
+<p>外键约束涉及到的相关术语：<br>        外键约束：一种约束（foreign key）<br>        外键字段：该字段上添加了外键约束<br>        外键值：外键字段当中的每一个值。</p>
+<p>一张表可以有多个FK， FK主要用来优化数据库，解决数据库冗余的问题，避免空间的浪费。被外键约束的字段可以重复，但是数据都必须是主表字段里的数据，不能出现其他的数据。</p>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>存储引擎是MySQL中特有的一个术语，其它数据库中没有。实际上存储引擎是一个表存储&#x2F;组织数据的方式。不同的存储引擎，表存储数据的方式不同。</p>
+<p>可以在建表的时候给表指定存储引擎。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `t_student` (</span><br><span class="line">	  `no` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">	  `name` varchar(255) DEFAULT NULL,</span><br><span class="line">	  `cno` int(11) DEFAULT NULL,</span><br><span class="line">	  PRIMARY KEY (`no`),</span><br><span class="line">	  KEY `cno` (`cno`),</span><br><span class="line">	  CONSTRAINT `t_student_ibfk_1` FOREIGN KEY (`cno`) REFERENCES `t_class` (`classno`)</span><br><span class="line">	) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+
+<p>在建表的时候可以在最后小括号的”)”的右边使用：<br>    ENGINE来指定存储引擎。<br>    CHARSET来指定这张表的字符编码方式。</p>
+<p>​	结论：<br>​		mysql默认的存储引擎是：InnoDB<br>​		mysql默认的字符编码方式是：utf8</p>
+<p>使用show engines \G查看mysql支持哪些存储引擎。</p>
+<p>MyISAM存储引擎？<br>    它管理的表具有以下特征：<br>        使用三个文件表示每个表：<br>            格式文件 — 存储表结构的定义（mytable.frm）<br>            数据文件 — 存储表行的内容（mytable.MYD）<br>            索引文件 — 存储表上索引（mytable.MYI）：索引是一本书的目录，缩小扫描范围，提高查询效率的一种机制。<br>        可被转换为压缩、只读表来节省空间</p>
+<pre><code>    提示一下：
+        对于一张表来说，只要是主键，
+        或者加有unique约束的字段上会自动创建索引。
+
+    MyISAM存储引擎特点：
+        可被转换为压缩、只读表来节省空间
+        这是这种存储引擎的优势！！！！
+    
+    MyISAM不支持事务机制，安全性低。
+</code></pre>
+<p>InnoDB存储引擎？<br>    这是mysql默认的存储引擎，同时也是一个重量级的存储引擎。<br>    InnoDB支持事务，支持数据库崩溃后自动恢复机制。<br>    InnoDB存储引擎最主要的特点是：非常安全。</p>
+<pre><code>它管理的表具有下列主要特征：
+    – 每个 InnoDB 表在数据库目录中以.frm 格式文件表示
+    – InnoDB 表空间 tablespace 被用于存储表的内容（表空间是一个逻辑名称。表空间存储数据+索引。）
+
+    – 提供一组用来记录事务性活动的日志文件
+    – 用 COMMIT(提交)、SAVEPOINT 及ROLLBACK(回滚)支持事务处理
+    – 提供全 ACID 兼容
+    – 在 MySQL 服务器崩溃后提供自动恢复
+    – 多版本（MVCC）和行级锁定
+    – 支持外键及引用的完整性，包括级联删除和更新
+
+InnoDB最大的特点就是支持事务：
+    以保证数据的安全。效率不是很高，并且也不能压缩，不能转换为只读，
+    不能很好的节省存储空间。
+</code></pre>
+<p>MEMORY存储引擎？<br>    使用 MEMORY 存储引擎的表，其数据存储在内存中，且行的长度固定，<br>    这两个特点使得 MEMORY 存储引擎非常快。</p>
+<pre><code>MEMORY 存储引擎管理的表具有下列特征：
+    – 在数据库目录内，每个表均以.frm 格式的文件表示。
+    – 表数据及索引被存储在内存中。（目的就是快，查询快！）
+    – 表级锁机制。
+    – 不能包含 TEXT 或 BLOB 字段。
+
+MEMORY 存储引擎以前被称为HEAP 引擎。
+
+MEMORY引擎优点：查询效率是最高的。不需要和硬盘交互。
+MEMORY引擎缺点：不安全，关机之后数据消失。因为数据和索引都是在内存当中。
+</code></pre>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>一个事务其实就是一个完整的业务逻辑。是一个最小的工作单元。不可再分。</p>
+<p>只有DML语句才会有事务这一说，其它语句和事务无关！insert，delete，update只有以上的三个语句和事务有关系，其它都没有关系。</p>
+<p>提交事务：commit; 回滚事务：rollback; 事务对应的英语单词是：transaction</p>
+<p>mysql默认情况下是支持自动提交事务的。（自动提交）<br>        什么是自动提交？每执行一条DML语句，则提交一次！</p>
+<p>事务包括4个特性？</p>
+<pre><code>A：原子性
+    说明事务是最小的工作单元。不可再分。
+
+C：一致性
+    所有事务要求，在同一个事务当中，所有操作必须同时成功，或者同时失败，
+    以保证数据的一致性。
+
+I：隔离性
+    A事务和B事务之间具有一定的隔离。
+    教室A和教室B之间有一道墙，这道墙就是隔离性。
+    A事务在操作一张表的时候，另一个事务B也操作这张表会那样？？？
+
+D：持久性
+    事务最终结束的一个保障。事务提交，就相当于将没有保存到硬盘上的数据
+    保存到硬盘上！
+</code></pre>
+<h3 id="事务的隔离性"><a href="#事务的隔离性" class="headerlink" title="事务的隔离性"></a>事务的隔离性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">读未提交：read uncommitted（最低的隔离级别）《没有提交就读到了》</span><br><span class="line">			什么是读未提交？</span><br><span class="line">				事务A可以读取到事务B未提交的数据。</span><br><span class="line">			这种隔离级别存在的问题就是：</span><br><span class="line">				脏读现象！(Dirty Read)</span><br><span class="line">				我们称读到了脏数据。</span><br><span class="line">			这种隔离级别一般都是理论上的，大多数的数据库隔离级别都是二档起步！</span><br><span class="line"></span><br><span class="line">​	读已提交：read committed《提交之后才能读到》</span><br><span class="line">​		什么是读已提交？</span><br><span class="line">​			事务A只能读取到事务B提交之后的数据。</span><br><span class="line">​		这种隔离级别解决了什么问题？</span><br><span class="line">​			解决了脏读的现象。</span><br><span class="line">​		这种隔离级别存在什么问题？</span><br><span class="line">​			不可重复读取数据。</span><br><span class="line">​			什么是不可重复读取数据呢？</span><br><span class="line">​				在事务开启之后，第一次读到的数据是3条，当前事务还没有</span><br><span class="line">​				结束，可能第二次再读取的时候，读到的数据是4条，3不等于4</span><br><span class="line">​				称为不可重复读取。</span><br><span class="line"></span><br><span class="line">​		这种隔离级别是比较真实的数据，每一次读到的数据是绝对的真实。</span><br><span class="line">​		oracle数据库默认的隔离级别是：read committed</span><br><span class="line"></span><br><span class="line">​	可重复读：repeatable read《提交之后也读不到，永远读取的都是刚开启事务时的数据》</span><br><span class="line">​		什么是可重复读取？</span><br><span class="line">​			事务A开启之后，不管是多久，每一次在事务A中读取到的数据</span><br><span class="line">​			都是一致的。即使事务B将数据已经修改，并且提交了，事务A</span><br><span class="line">​			读取到的数据还是没有发生改变，这就是可重复读。事务A读到的数据一直都是他开启时间是的数据，不管其他事务对数据库进行了怎样的修改，只有当事务A重新开启后，才能读到新的数据。</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">​		可重复读解决了什么问题？</span><br><span class="line">​			解决了不可重复读取数据。</span><br><span class="line">​		可重复读存在的问题是什么？</span><br><span class="line">​			可以会出现幻影读。</span><br><span class="line">​			每一次读取到的数据都是幻象。不够真实！</span><br><span class="line">​		</span><br><span class="line">​		早晨9点开始开启了事务，只要事务不结束，到晚上9点，读到的数据还是那样！</span><br><span class="line">​		读到的是假象。不够绝对的真实。</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">​		mysql中默认的事务隔离级别就是这个！！！！！！！！！！！</span><br><span class="line"></span><br><span class="line">​	序列化/串行化：serializable（最高的隔离级别）</span><br><span class="line">​		这是最高隔离级别，效率最低。解决了所有的问题。</span><br><span class="line">​		这种隔离级别表示事务排队，不能并发！</span><br><span class="line">​		synchronized，线程同步（事务同步）</span><br><span class="line">​		每一次读取到的数据都是最真实的，并且效率是最低的。</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-14"><a href="#7-14" class="headerlink" title="7.14"></a>7.14</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>什么是索引？<br>    索引是在数据库表的字段上添加的，是为了提高查询效率存在的一种机制。<br>    一张表的一个字段可以添加一个索引，当然，多个字段联合起来也可以添加索引。<br>    索引相当于一本书的目录，是为了缩小扫描范围而存在的一种机制。</p>
+<pre><code>对于一本字典来说，查找某个汉字有两种方式：
+    第一种方式：一页一页挨着找，直到找到为止，这种查找方式属于全字典扫描。
+    效率比较低。
+    第二种方式：先通过目录（索引）去定位一个大概的位置，然后直接定位到这个
+    位置，做局域性扫描，缩小扫描的范围，快速的查找。这种查找方式属于通过
+    索引检索，效率较高。
+</code></pre>
+<p>创建索引：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create index emp_ename_index on emp(ename);</span><br><span class="line">		给emp表的ename字段添加索引，起名：emp_ename_index</span><br></pre></td></tr></table></figure>
+
+<p>​	删除索引：</p>
+<pre><code>    mysql&gt; drop index emp_ename_index on emp;
+    将emp表上的emp_ename_index索引对象删除。
+</code></pre>
+<p>在mysql当中，怎么查看一个SQL语句是否使用了索引进行检索？</p>
+<pre><code>mysql&gt; explain select * from emp where ename = &#39;KING&#39;;
+</code></pre>
+<p>失效的第1种情况：<br>        select * from emp where ename like ‘%T’;</p>
+<p>失效的第2种情况：<br>        使用or的时候会失效，如果使用or那么要求or两边的条件字段都要有<br>        索引，才会走索引，如果其中一边有一个字段没有索引，那么另一个<br>        字段上的索引也会实现。所以这就是为什么不建议使用or的原因。</p>
+<p>失效的第3种情况：<br>        使用复合索引的时候，没有使用左侧的列查找，索引失效<br>        什么是复合索引？<br>            两个字段，或者更多的字段联合起来添加一个索引，叫做复合索引。</p>
+<p>比如create index emp_job_sal_index on emp(job,sal);</p>
+<p><strong>当执行select * from emp where job &#x3D; ‘MANAGER’;有索引。当执行select * from emp where sal &#x3D; 800;时，无索引。</strong></p>
+<p>失效的第4种情况：<br>        在where当中索引列使用了函数<br>        explain select * from emp where lower(ename) &#x3D; ‘smith’;</p>
+<p>索引在数据库当中分了很多类？<br>    单一索引：一个字段上添加索引。<br>    复合索引：两个字段或者更多的字段上添加索引。</p>
+<p>主键索引：主键上添加索引。<br>唯一性索引：具有unique约束的字段上添加索引。<br>…..</p>
+<p>注意：唯一性比较弱的字段上添加索引用处不大。</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>什么是视图？<br>    view:站在不同的角度去看待同一份数据。</p>
+<p>我们可以面向视图对象进行增删改查，对视图对象的增删改查，会导致原表被操作！（视图的特点：通过对视图的操作，会影响到原表数据。）</p>
+<p>创建视图对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create view dept2_view as select * from dept2;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create view </span><br><span class="line">	emp_dept_view</span><br><span class="line">as</span><br><span class="line">	select </span><br><span class="line">		e.ename,e.sal,d.dname</span><br><span class="line">	from</span><br><span class="line">		emp e</span><br><span class="line">	join</span><br><span class="line">		dept d</span><br><span class="line">	on</span><br><span class="line">		e.deptno = d.deptno;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在as后加上一个DQL语句</strong></p>
+<p>删除视图对象：<br>    drop view dept2_view;</p>
+<p>&#x2F;&#x2F;面向视图查询<br>    select * from dept2_view; </p>
+<p>&#x2F;&#x2F; 面向视图插入<br>insert into dept2_view(deptno,dname,loc) values(60,’SALES’, ‘BEIJING’);</p>
+<p>&#x2F;&#x2F; 面向视图删除<br>    mysql&gt; delete from dept2_view;</p>
+<p><strong>视图相当于一个引用，他可以简化SQL语句，当要重复执行一个复杂的SQL语句时，就可以用视图来代替。</strong></p>
+<h2 id="数据库三范式"><a href="#数据库三范式" class="headerlink" title="数据库三范式"></a>数据库三范式</h2><p>数据库设计范式共有？<br>    3个。<br>第一范式：要求任何一张表必须有主键，每一个字段原子性不可再分。（最核心，最重要的范式，所有表的设计都需要满足。<br>    必须有主键，并且每一个字段都是原子性不可再分。）</p>
+<p>第二范式：建立在第一范式的基础之上，要求所有非主键字段完全依赖主键，<br>不要产生部分依赖。（建立在第一范式的基础之上，要求所有非主键字段必须完全依赖主键，不要产生部分依赖。例如主键是复合主键，而其他非主键字段，只对其中一个主键对应。）</p>
+<p><strong>此时为多对多的关系  设计理念：多对多，三张表，关系表两个外键</strong></p>
+<p>第三范式：建立在第二范式的基础之上，要求所有非主键字段直接依赖主键，<br>不要产生传递依赖。（第三范式建立在第二范式的基础之上，要求所有非主键字典必须直接依赖主键，不要产生传递依赖。例如两个非主键字段A，B都对主键完全依赖，但是，A，B却是完全对应的，可以完全通过A对应出B）</p>
+<p><strong>此时为一对多的关系 设计理念：一对多，两张表，多的表加外键</strong></p>
+<p>设计数据库表的时候，按照以上的范式进行，可以避免表中数据的冗余，空间的浪费。</p>
+<p>但是数据库设计三范式是理论上的。实践和理论有的时候有偏差。最终的目的都是为了满足客户的需求，有的时候会拿冗余换执行速度。因为在sql当中，表和表之间连接次数越多，效率越低。（笛卡尔积）有的时候可能会存在冗余，但是为了减少表的连接次数，这样做也是合理的，并且对于开发人员来说，sql语句的编写难度也会降低。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -179,16 +662,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/MySQL-note/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/07/19/MySQL-note/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/07/19/SEETF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SEETF</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -203,392 +745,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SEETF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/SEETF/">SEETF</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/19/SEETF/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>只会两题比较简单的:(
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/SEETF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#7-9"><span class="toc-number">1.</span> <span class="toc-text">7.9</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DB%EF%BC%8CDBMS%EF%BC%8CSQL"><span class="toc-number">1.1.</span> <span class="toc-text">DB，DBMS，SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">SQL语句的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DQl%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">DQl的一些语法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-10"><span class="toc-number">2.</span> <span class="toc-text">7.10</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%EF%BC%8C%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.1.</span> <span class="toc-text">内，外连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.2.</span> <span class="toc-text">多表连接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-11"><span class="toc-number">3.</span> <span class="toc-text">7.11</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.1.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#union%E5%90%88%E5%B9%B6%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="toc-number">3.2.</span> <span class="toc-text">union合并查询结果集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#limit"><span class="toc-number">3.3.</span> <span class="toc-text">limit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-12"><span class="toc-number">4.</span> <span class="toc-text">7.12</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">4.1.</span> <span class="toc-text">表的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AEinsert-%EF%BC%88DML%EF%BC%89"><span class="toc-number">4.1.1.</span> <span class="toc-text">插入数据insert （DML）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9update%EF%BC%88DML%EF%BC%89"><span class="toc-number">4.1.2.</span> <span class="toc-text">修改update（DML）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE-delete-%EF%BC%88DML%EF%BC%89"><span class="toc-number">4.1.3.</span> <span class="toc-text">删除数据 delete （DML）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-13"><span class="toc-number">5.</span> <span class="toc-text">7.13</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.1.</span> <span class="toc-text">约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#not-null"><span class="toc-number">5.1.1.</span> <span class="toc-text">not null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unique"><span class="toc-number">5.1.2.</span> <span class="toc-text">unique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.1.3.</span> <span class="toc-text">主键约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.1.4.</span> <span class="toc-text">外键约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-number">5.2.</span> <span class="toc-text">存储引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-number">5.3.</span> <span class="toc-text">事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="toc-number">5.3.1.</span> <span class="toc-text">事务的隔离性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-14"><span class="toc-number">6.</span> <span class="toc-text">7.14</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">6.1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">6.2.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="toc-number">6.3.</span> <span class="toc-text">数据库三范式</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-cryptohub" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/cryptohub/">cryptohub</a>
-    </h1>
   
 
-        
-        <a href="/2023/07/19/cryptohub/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:44:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录cryptohub的一些笔记
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/cryptohub/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RSA-practice" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/RSA-practice/">RSA_practice</a>
-    </h1>
   
 
-        
-        <a href="/2023/07/19/RSA-practice/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录RSA入门的一些做题笔记
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/RSA-practice/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-guosai" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/28/guosai/">2023ciscn初赛</a>
-    </h1>
   
 
-        
-        <a href="/2023/05/28/guosai/" class="archive-article-date">
-  	<time datetime="2023-05-28T09:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2023ciscn初赛
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/28/guosai/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-FCTF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/13/FCTF/">FCTF</a>
-    </h1>
-  
-
-        
-        <a href="/2023/05/13/FCTF/" class="archive-article-date">
-  	<time datetime="2023-05-13T11:51:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>校赛的题目都好难啊！！
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/13/FCTF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-buuctf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/06/buuctf/">buuctf做题笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2023/04/06/buuctf/" class="archive-article-date">
-  	<time datetime="2023-04-06T15:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="buuctf"><a href="#buuctf" class="headerlink" title="buuctf"></a>buuctf</h1><p>记录一些我的做题笔记</p>
-<p>现在以及荒废了
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/06/buuctf/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -614,8 +796,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

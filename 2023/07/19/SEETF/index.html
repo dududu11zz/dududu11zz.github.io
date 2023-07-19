@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>dudududu~</title>
+  <title>SEETF | dudududu~</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="dudududu~">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="只会两题比较简单的:(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SEETF">
+<meta property="og:url" content="http://example.com/2023/07/19/SEETF/index.html">
 <meta property="og:site_name" content="dudududu~">
+<meta property="og:description" content="只会两题比较简单的:(">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T14:47:07.000Z">
+<meta property="article:modified_time" content="2023-07-19T14:50:09.062Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -145,79 +149,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-MySQL-note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-SEETF" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/MySQL-note/">MySQL_note</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/19/MySQL-note/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:57:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录MySQL的学习笔记
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/MySQL-note/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SEETF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/SEETF/">SEETF</a>
+    <h1 class="article-title" itemprop="name">
+      SEETF
     </h1>
   
 
@@ -230,10 +169,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>只会两题比较简单的:(
-        
+        <p>只会两题比较简单的:(<span id="more"></span></p>
+<h1 id="Crypto-x2F-🎓-BabyRC4"><a href="#Crypto-x2F-🎓-BabyRC4" class="headerlink" title="Crypto&#x2F;🎓 BabyRC4"></a><strong>Crypto</strong>&#x2F;🎓 BabyRC4</h1><p>RC4属于对称加密算法，RC4算法的关键是根据明文和密钥生成相应的密钥流，密钥流的长度和明文的长度是对应的，也就是说明文的长度是500字节，那么密钥流也是500字节。当然，加密生成的密文也是500字节，因为密文第i字节&#x3D;明文第i字节^密钥流第i字节，同时密钥的长度keylen 与明文长度、密钥流的长度没有必然关系.RC4的加解密都是靠异或实现的题目中c0与c1的密钥应该相同，但是因为c0的明文长度更短，因为密钥流的长度与明文相同，所以用c0的明文与密文异或产生的密钥流无法完全解出c1但是幸运的是所缺省的部分是已知的。刚开始做的时候得出的是b’}5382efac:s5ss5y3k_4Cr_35Uer_rEv3n{E\x99_’这么一串比特串，原因是没意识到[::-1]的作用是对列表进行翻转，加上后就可以得到b’_\x99E{n3vEr_reU53_rC4_k3y5ss5s:cafe2835}’，补齐未加密部分即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">c0 = bytes.fromhex(&#x27;b99665ef4329b168cc1d672dd51081b719e640286e1b0fb124403cb59ddb3cc74bda4fd85dfc&#x27;)</span><br><span class="line">c1 = bytes.fromhex(&#x27;a5c237b6102db668ce467579c702d5af4bec7e7d4c0831e3707438a6a3c818d019d555fc&#x27;)</span><br><span class="line">c2=xor(c1,b&#x27;a&#x27;*36)</span><br><span class="line">print(c2)</span><br><span class="line">co=xor(c0,b&quot;\xc4\xa3V\xd7qL\xd7\t\xaf&#x27;\x14\x18\xa6c\xb4\xce*\x8d\x1f\x1c-iP\x82\x11\x15Y\xc7\xc2\xa9y\xb1x\xb44\x9d&quot;)[::-1]</span><br><span class="line">print(co)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag:SEE&#123;n3vEr_reU53_rC4_k3y5ss5s:cafe2835&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Crypto-x2F-🎓-OpenEndedRSA-NEW"><a href="#Crypto-x2F-🎓-OpenEndedRSA-NEW" class="headerlink" title="Crypto&#x2F;🎓 OpenEndedRSA [NEW]"></a><strong>Crypto</strong>&#x2F;🎓 OpenEndedRSA [NEW]</h1><p>p是一个512字节的素数，还是很小的，在<a target="_blank" rel="noopener" href="https://www.alpertron.com.ar/ECM.HTM%E4%B8%AD%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8A%8As%E5%88%86%E8%A7%A3%EF%BC%8C%E5%BE%97%E5%88%B0pp=2%EF%BC%8Cp">https://www.alpertron.com.ar/ECM.HTM中可以直接把s分解，得到pp=2，p</a> &#x3D; 11336109240426199545380121772211758030643077084354723510396623108046045877936239312932896062461038721613541632921592699626408876519614365179680368296156007</p>
+<p><strong>但是做这题时发现一个很无语的东西是在math库里也有pow()这个函数，并且只有两个参数，所以如果要引用math库的话要在gmpy2这个库后面引用，否则就会报错。</strong></p>
+<p>所以wp为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import gmpy2</span><br><span class="line">from Crypto.Util.number import *</span><br><span class="line">n = 102273879596517810990377282423472726027460443064683939304011542123196710774901060989067270532492298567093229128321692329740628450490799826352111218401958040398966213264648582167008910307308861267119229380385416523073063233676439205431787341959762456158735901628476769492808819670332459690695414384805355960329</span><br><span class="line">e = 65537</span><br><span class="line">c = 51295852362773645802164495088356504014656085673555383524516532497310520206771348899894261255951572784181072534252355368923583221684536838148556235818725495078521334113983852688551123368250626610738927980373728679163439512668552165205712876265795806444660262239275273091657848381708848495732343517789776957423</span><br><span class="line">p = 11336109240426199545380121772211758030643077084354723510396623108046045877936239312932896062461038721613541632921592699626408876519614365179680368296156007</span><br><span class="line">q = n //p</span><br><span class="line">d = gmpy2.invert(e, (p-1)*(q-1))</span><br><span class="line"></span><br><span class="line">m = pow(c, d, n)</span><br><span class="line"></span><br><span class="line">print(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag：SEE&#123;0dd_3vEN:deadbeef&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -242,16 +214,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/SEETF/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/07/19/SEETF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2023/07/19/MySQL-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySQL_note
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/19/cryptohub/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cryptohub</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -266,329 +306,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cryptohub" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/cryptohub/">cryptohub</a>
-    </h1>
-  
-
-        
-        <a href="/2023/07/19/cryptohub/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:44:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录cryptohub的一些笔记
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/cryptohub/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto-x2F-%F0%9F%8E%93-BabyRC4"><span class="toc-number">1.</span> <span class="toc-text">Crypto&#x2F;🎓 BabyRC4</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto-x2F-%F0%9F%8E%93-OpenEndedRSA-NEW"><span class="toc-number">2.</span> <span class="toc-text">Crypto&#x2F;🎓 OpenEndedRSA [NEW]</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-RSA-practice" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/07/19/RSA-practice/">RSA_practice</a>
-    </h1>
   
 
-        
-        <a href="/2023/07/19/RSA-practice/" class="archive-article-date">
-  	<time datetime="2023-07-19T14:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录RSA入门的一些做题笔记
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/07/19/RSA-practice/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-guosai" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/28/guosai/">2023ciscn初赛</a>
-    </h1>
   
 
-        
-        <a href="/2023/05/28/guosai/" class="archive-article-date">
-  	<time datetime="2023-05-28T09:11:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2023ciscn初赛
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/28/guosai/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-FCTF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/05/13/FCTF/">FCTF</a>
-    </h1>
   
 
-        
-        <a href="/2023/05/13/FCTF/" class="archive-article-date">
-  	<time datetime="2023-05-13T11:51:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>校赛的题目都好难啊！！
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/05/13/FCTF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-buuctf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/04/06/buuctf/">buuctf做题笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2023/04/06/buuctf/" class="archive-article-date">
-  	<time datetime="2023-04-06T15:46:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="buuctf"><a href="#buuctf" class="headerlink" title="buuctf"></a>buuctf</h1><p>记录一些我的做题笔记</p>
-<p>现在以及荒废了
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/06/buuctf/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -614,8 +357,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
